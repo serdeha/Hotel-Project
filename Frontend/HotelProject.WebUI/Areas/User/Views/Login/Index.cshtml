@@ -1,0 +1,29 @@
+﻿@model UserLoginDto
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="col-xl-6">
+    <div class="form-input-content">
+        <div class="card login-form mb-0">
+            <div class="card-body pt-5">
+                <a class="text-center" asp-controller="Home" asp-action="Index" asp-area="User"> <h4>Hotel Project</h4></a>
+
+                <form class="mt-5 mb-5 login-input" asp-controller="Login" asp-action="Index" asp-area="User">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Kullanıcı adı" asp-for="Username">
+                        <span asp-validation-for="Username" class="text text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Şifre" asp-for="Password">
+                        <span asp-validation-for="Password" class="text text-danger"></span>
+                    </div>
+                    <button class="btn login-form__btn submit w-100">Giriş Yap</button>
+                </form>
+                <p class="mt-5 login-form__footer">Bir hesabın mı var ?<a asp-controller="Register" asp-action="Index" asp-area="User" class="text-primary">Giriş Yap</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+

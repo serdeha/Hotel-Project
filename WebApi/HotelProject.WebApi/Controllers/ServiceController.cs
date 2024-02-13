@@ -36,7 +36,7 @@ namespace HotelProject.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{serviceId}")]
         public async Task<IActionResult> Delete(int serviceId)
         {
             var service = await _serviceService.GetByIdAsync(serviceId);

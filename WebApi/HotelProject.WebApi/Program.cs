@@ -4,6 +4,7 @@ using HotelProject.Data.Abstract;
 using HotelProject.Data.Concrete.EntityFramework.Contexts;
 using HotelProject.Data.Concrete.EntityFramework.Repositories;
 using HotelProject.Data.UnitOfWork;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -22,6 +23,18 @@ services.AddScoped<ISubscribeRepository, EfSubscribeRepository>();
 services.AddScoped<ISubscribeService, SubscribeManager>();
 services.AddScoped<ITestimonialRepository, EfTestimonialRepository>();
 services.AddScoped<ITestimonialService, TestimonialManager>();
+services.AddScoped<IAboutRepository, EfAboutRepository>();
+services.AddScoped<IAboutService, AboutManager>();
+
+services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+services.AddCors(options =>
+{
+    options.AddPolicy("OtelApiCors", opts =>
+    {
+        opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,6 +50,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("OtelApiCors");
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();

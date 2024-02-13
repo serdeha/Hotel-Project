@@ -12,6 +12,7 @@ namespace HotelProject.Data.UnitOfWork
         private EfStaffRepository? _staffRepository;
         private EfSubscribeRepository? _subscribeRepository;
         private EfTestimonialRepository? _testimonialRepository;
+        private EfAboutRepository? _aboutRepository;
         public UnitOfWork(HotelProjectDbContext context)
         {
             _context = context;
@@ -40,6 +41,7 @@ namespace HotelProject.Data.UnitOfWork
 
         public ITestimonialRepository Testimonial => _testimonialRepository ??= new EfTestimonialRepository(_context);
 
+        public IAboutRepository About => _aboutRepository ??= new EfAboutRepository(_context);
         
     }
 }

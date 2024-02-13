@@ -1,0 +1,78 @@
+﻿@model List<ResultRoomDto>
+@{
+    ViewData["Title"] = "Odalar";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="text-left col-md-10">
+                    <h1>Odalarımız</h1>
+                </div>
+                <div class="text-right col-md-2">
+                    <a asp-controller="Room" asp-action="Add" asp-area="Admin" class="btn btn-success text-left text-white">Oda Ekle</a>
+                </div>
+            </div>
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Resim</th>
+                        <th>Başlık</th>
+                        <th>Numara</th>
+                        <th>Fiyat</th>
+                        <th>Oda Kalitesi</th>
+                        <th>Yatak Sayısı</th>
+                        <th>Duş Sayısı</th>
+                        <th>Wifi</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var room in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img class="rounded-circle mt-4" height="40" width="40" src="~/img/room/@room.RoomCoverImage" alt="@room.Title" />
+                            </td>
+                            <td>@room.Title</td>
+                            <td>@room.RoomNumber</td>
+                            <td>@room.Price ₺</td>
+                            <td>@room.Star</td>
+                            <td>@room.BedCount</td>
+                            <td>@room.BathCount</td>
+                            <td>@room.Wifi</td>
+                            <td>
+                                <a asp-controller="Room" asp-action="Delete" asp-area="Admin" asp-route-roomId="@room.Id" class="btn mb-1 btn-rounded btn-outline-danger">Sil</a>
+                                <a asp-controller="Room" asp-action="Update" asp-area="Admin" asp-route-roomId="@room.Id" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
+                                <a href="#" class="btn mb-1 btn-rounded btn-outline-info">Detaylar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Henüz oda eklenilmemiş!</h4>
+            <div class="card-content">
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading">Oda Bulunamadı!</h4>
+                    <p>
+                        Henüz oda eklenilmemiş. Lütfen bir oda <a asp-controller="Room" asp-action="Add" asp-area="Admin" class="text text-info">ekleyiniz.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

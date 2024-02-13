@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html class="h-100" lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hotel Project @(ViewData["Title"] == null ? "" : $" | {ViewData["Title"]}")</title>
+    @await Html.PartialAsync("_CssPartialView")
+</head>
+
+<body class="h-100">
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    @await Html.PartialAsync("_JsPartialView")
+</body>
+</html>
+
+
+
+
+

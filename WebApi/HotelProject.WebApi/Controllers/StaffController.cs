@@ -18,7 +18,7 @@ namespace HotelProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> StaffList()
         {
-            var values = await _staffService.GetAllWithFilterAsync(x=>x.IsActive && !x.IsDeleted);
+            var values = await _staffService.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted);
             return Ok(values);
         }
 
@@ -36,16 +36,16 @@ namespace HotelProject.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{staffId}")]
         public async Task<IActionResult> Delete(int staffId)
         {
             var staff = await _staffService.GetByIdAsync(staffId);
-            if(staff != null)
+            if (staff != null)
             {
                 await _staffService.DeleteAsync(staff);
                 return Ok(staff);
             }
-            return NotFound(404);           
+            return BadRequest();
         }
 
         [HttpGet("{id}")]

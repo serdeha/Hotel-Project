@@ -36,7 +36,7 @@ namespace HotelProject.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{testimonialId}")]
         public async Task<IActionResult> Delete(int testimonialId)
         {
             var testimonial = await _testimonialService.GetByIdAsync(testimonialId);

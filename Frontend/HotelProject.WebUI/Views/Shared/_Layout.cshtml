@@ -1,54 +1,54 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Api Otel Admin Paneli</title>
+    <title>Hotelier @(ViewData["Title"] == null ? "" : $" | {ViewData["Title"]}") </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
     @await Html.PartialAsync("_CssPartialView")
+    @if (IsSectionDefined("Css"))
+    {
+        @await RenderSectionAsync("Css",false)
+    }
 </head>
 
 <body>
-
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <div id="main-wrapper">
-
-        <div class="nav-header">
-            <div class="brand-logo">
-                <a href="index.html">
-                    <b class="logo-abbr"><img src="~/admin/images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="~/admin/images/logo-compact.png" alt=""></span>
-                    <span class="brand-title">
-                        <img src="~/admin/images/logo-text.png" alt="">
-                    </span>
-                </a>
+    <div class="container-fluid bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Yükleniyor...</span>
             </div>
         </div>
-
+        <!-- Spinner End -->
+        <!-- Header Start -->
         @await Html.PartialAsync("_NavbarPartialView")
-        @await Html.PartialAsync("_SidebarPartialView")
-
-        <div class="content-body">
-            <!-- row -->
-
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
-            <!-- #/ container -->
-        </div>
-
+        <!-- Header End -->
+        <!-- Carousel Start -->
+        @await Component.InvokeAsync("Carousel")
+        <!-- Carousel End -->
+        <!-- Booking Start -->
+        @await Component.InvokeAsync("Booking")
+        <!-- Booking End -->
+        @RenderBody()
+        <!-- Newsletter Start -->
+        @await Component.InvokeAsync("Newsletter")
+        <!-- Newsletter Start -->
+        <!-- Footer Start -->
         @await Html.PartialAsync("_FooterPartialView")
+        <!-- Footer End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     @await Html.PartialAsync("_JsPartialView")
-
+    @if (IsSectionDefined("Scripts"))
+    {
+        @await RenderSectionAsync("Scripts",false)
+    }
 </body>
 
 </html>

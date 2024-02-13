@@ -1,0 +1,52 @@
+﻿@model StaffAddViewModel
+@{
+    ViewData["Title"] = "Yönetici Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">İsim</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="İsim" asp-for="Name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Title" asp-for="Title">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sosyal Medya 1</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Sosyal Medya 1" asp-for="SocialMedia1">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sosyal Medya 2</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Sosyal Medya 2" asp-for="SocialMedia2">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sosyal Medya 3</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Sosyal Medya 3" asp-for="SocialMedia3">
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-success text-white" type="submit">Ekle</button>
+                <a asp-controller="Staff" asp-action="Index" asp-area="Admin" class="btn btn-danger text-white">Vazgeç</a>
+            </div>
+        </form>
+    </div>
+</div>
+

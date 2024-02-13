@@ -1,0 +1,54 @@
+﻿@model UserAddDto
+@{
+    ViewData["Title"] = "Kayıt Ol";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="col-xl-6">
+    <div class="form-input-content">
+        <div class="card login-form mb-0">
+            <div class="card-body pt-5">
+
+                <a class="text-center" asp-controller="Home" asp-action="Index" asp-area="User"> <h4>Hotel Project</h4></a>
+
+                <form class="mt-5 mb-5 login-input" asp-controller="Register" asp-action="Index" asp-area="User">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Kullanıcı adı" required asp-for="Username">
+                        <span asp-validation-for="Username" class="text text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="İsim" required asp-for="Name">
+                        <span asp-validation-for="Name" class="text text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Soyisim" required asp-for="Lastname">
+                        <span asp-validation-for="Lastname" class="text text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="E-mail" required asp-for="Email">
+                        <span asp-validation-for="Email" class="text text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Şifre" required asp-for="Password">
+                        <span asp-validation-for="Password" class="text text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Şifre tekrar" required asp-for="ConfirmPassword">
+                        <span asp-validation-for="ConfirmPassword" class="text text-danger"></span>
+                    </div>
+
+                    <button class="btn login-form__btn submit w-100">Kayıt ol</button>
+                </form>
+                <p class="mt-5 login-form__footer">Bir hesabın mı var ? <a asp-controller="Login" asp-action="Index" asp-area="User" class="text-primary"> Giriş Yap </a></p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+

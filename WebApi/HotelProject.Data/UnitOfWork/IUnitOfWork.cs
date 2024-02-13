@@ -9,6 +9,7 @@ namespace HotelProject.Data.UnitOfWork
         IStaffRepository Staff { get; }
         ISubscribeRepository Subscribe { get; }
         ITestimonialRepository Testimonial { get; }
+        IAboutRepository About { get; }
         Task<int> SaveChangesAsync();
         void SaveChanges();
     }
