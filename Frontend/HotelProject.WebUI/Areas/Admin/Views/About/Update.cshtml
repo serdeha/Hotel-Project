@@ -1,0 +1,92 @@
+﻿@model UpdateAboutDto
+@{
+    ViewData["Title"] = "Hakkımızda Sayfasını Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model != null)
+{
+    <div class="card">
+        <div class="card-body">
+
+            <form method="post">
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedByName" />
+                <input type="hidden" asp-for="CreatedDate" />
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Üst Başlık</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Üst Başlık" asp-for="Toptitle">
+                        <span class="text text-danger" asp-validation-for="Toptitle"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Alt Başlık</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Alt Başlık" asp-for="Subtitle">
+                        <span class="text text-danger" asp-validation-for="Subtitle"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Açıklama</label>
+                    <div class="col-sm-10">
+                        <textarea asp-for="Description" rows="8" class="form-control" placeholder="Açıklama giriniz"></textarea>
+                        <span class="text text-danger" asp-validation-for="Description"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Oda Sayısı</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Oda Sayısı" asp-for="RoomCount">
+                        <span class="text text-danger" asp-validation-for="RoomCount"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Yönetici Sayısı</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Yönetici Sayısı" asp-for="StaffCount">
+                        <span class="text text-danger" asp-validation-for="StaffCount"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Müşteri Sayısı</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Müşteri Sayısı" asp-for="CustomerCount">
+                        <span class="text text-danger" asp-validation-for="CustomerCount"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-success text-white" type="submit">Ekle</button>
+                    <a asp-controller="Home" asp-action="Index" asp-area="Admin" class="btn btn-danger text-white">Vazgeç</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Henüz hakkımızda sayfası eklenilmemiş!</h4>
+            <div class="card-content">
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading">Hakkımızda Sayfası Bulunamadı!</h4>
+                    <p>
+                        Henüz hakkımızda sayfası eklenilmemiş. Lütfen bir hakkımızda sayfası <a asp-controller="About" asp-action="Add" asp-area="Admin" class="text text-info">ekleyiniz.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

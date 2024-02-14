@@ -1,0 +1,77 @@
+﻿@model UpdateVideoDto
+@{
+    ViewData["Title"] = "Otel Video'su Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model != null)
+{
+    <div class="card">
+        <div class="card-body">
+
+            <form method="post">
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedByName" />
+                <input type="hidden" asp-for="CreatedDate" />
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Üst Başlık</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Üst Başlık" asp-for="Title">
+                        <span class="text text-danger" asp-validation-for="Title"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Alt Başlık</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Alt Başlık" asp-for="Subtitle">
+                        <span class="text text-danger" asp-validation-for="Subtitle"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Açıklama</label>
+                    <div class="col-sm-10">
+                        <textarea asp-for="Description" rows="8" class="form-control" placeholder="Açıklama giriniz"></textarea>
+                        <span class="text text-danger" asp-validation-for="Description"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Videoo Bağlantısı</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Video Bağlantısı" asp-for="VideoSource">
+                        <span class="text text-danger" asp-validation-for="VideoSource"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-success text-white" type="submit">Ekle</button>
+                    <a asp-controller="Video" asp-action="Update" asp-area="Admin" class="btn btn-danger text-white">Vazgeç</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Henüz video sayfası eklenilmemiş!</h4>
+            <div class="card-content">
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading">Video Sayfası Bulunamadı!</h4>
+                    <p>
+                        Henüz video sayfası eklenilmemiş. Lütfen bir video sayfası <a asp-controller="Video" asp-action="Add" asp-area="Admin" class="text text-info">ekleyiniz.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

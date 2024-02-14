@@ -36,7 +36,7 @@ namespace HotelProject.Business.Concrete
             {
                 entity.IsActive = false;
                 entity.IsDeleted = true;
-                _unitOfWork.Room.Update(entity);
+                _unitOfWork.Room.Delete(entity);
                 _unitOfWork.SaveChanges();
             }
         }
@@ -47,7 +47,7 @@ namespace HotelProject.Business.Concrete
             {
                 entity.IsActive = false;
                 entity.IsDeleted = true;
-                await _unitOfWork.Room.UpdateAsync(entity);
+                await _unitOfWork.Room.DeleteAsync(entity);
                 await _unitOfWork.SaveChangesAsync();
             }
         }

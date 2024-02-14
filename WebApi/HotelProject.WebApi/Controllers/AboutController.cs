@@ -18,7 +18,7 @@ namespace HotelProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return Ok(await _aboutService.GetByIdAsync(1));
+            return Ok(await _aboutService.GetWithFilterAsync(x=>x.IsActive && !x.IsDeleted));
         }
 
         [HttpPost]

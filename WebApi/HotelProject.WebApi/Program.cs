@@ -25,6 +25,8 @@ services.AddScoped<ITestimonialRepository, EfTestimonialRepository>();
 services.AddScoped<ITestimonialService, TestimonialManager>();
 services.AddScoped<IAboutRepository, EfAboutRepository>();
 services.AddScoped<IAboutService, AboutManager>();
+services.AddScoped<IVideoRepository, EfVideoRepository>();
+services.AddScoped<IVideoService, VideoManager>();
 
 services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
