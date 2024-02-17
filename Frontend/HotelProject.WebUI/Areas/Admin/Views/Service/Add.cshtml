@@ -6,11 +6,11 @@
 
 <div class="card">
     <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Title</label>
+                <label class="col-sm-2 col-form-label">Başlık</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Title" asp-for="Title">
+                    <input type="text" class="form-control" placeholder="Başlık" asp-for="Title">
                     <span class="text text-danger" asp-validation-for="Title"></span>
                 </div>
             </div>
@@ -24,9 +24,10 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Dosya Ekle</label>
+                <label class="col-sm-2 col-form-label">Servis İkonu</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control-file" name="iconImage">
+                    <input type="text" class="form-control" placeholder="Servis İkonu" asp-for="ServiceIcon">
+                    <span class="text text-danger" asp-validation-for="ServiceIcon"></span>
                 </div>
             </div>
 

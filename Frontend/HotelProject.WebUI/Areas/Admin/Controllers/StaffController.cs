@@ -1,4 +1,5 @@
-﻿using HotelProject.WebUI.Areas.Admin.Models.Staff;
+﻿using HotelProject.Core;
+using HotelProject.WebUI.Areas.Admin.Models.Staff;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -37,10 +38,11 @@ namespace HotelProject.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(StaffAddViewModel staffAddViewModel)
+        public async Task<IActionResult> Add(StaffAddViewModel staffAddViewModel,IFormFile? staffImage)
         {
             //http://localhost:5208/api/Staff
             var client = _httpClientFactory.CreateClient();
+            staffAddViewModel.StaffImage = staffImage != null ? await ImageHelperExtension.UploadWebpImage(staffImage, "staff") : "defaultStaff.png";
             var jsonData = JsonConvert.SerializeObject(staffAddViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("http://localhost:5208/api/Staff", stringContent);
@@ -80,9 +82,14 @@ namespace HotelProject.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(StaffUpdateViewModel staffUpdateViewModel)
+        public async Task<IActionResult> Update(StaffUpdateViewModel staffUpdateViewModel, IFormFile? staffImage)
         {
             var client = _httpClientFactory.CreateClient();
+            if(staffImage != null && staffUpdateViewModel.StaffImage != "defaultStaff.png")
+            {
+                ImageHelperExtension.DeleteImage(staffUpdateViewModel.StaffImage!, "staff");
+                staffUpdateViewModel.StaffImage = await ImageHelperExtension.UploadWebpImage(staffImage, "staff");
+            }
             var jsonData = JsonConvert.SerializeObject(staffUpdateViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("http://localhost:5208/api/Staff/", stringContent);

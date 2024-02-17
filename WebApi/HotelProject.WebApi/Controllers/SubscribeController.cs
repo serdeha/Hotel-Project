@@ -36,7 +36,7 @@ namespace HotelProject.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{subscribeId}")]
         public async Task<IActionResult> Delete(int subscribeId)
         {
             var subscribe = await _subscribeService.GetByIdAsync(subscribeId);

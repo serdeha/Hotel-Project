@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using HotelProject.Core;
 using HotelProject.WebUI.Areas.Admin.Dtos.ServiceDto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -41,12 +40,11 @@ namespace HotelProject.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddServiceDto addServiceDto, IFormFile? iconImage)
+        public async Task<IActionResult> Add(AddServiceDto addServiceDto)
         {
             if (ModelState.IsValid)
             {
                 var client = _httpClientFactory.CreateClient();
-                addServiceDto.ServiceIcon = iconImage == null ? "defaultService.png" : await ImageHelperExtension.UploadWebpImage(iconImage, "service");
                 var jsonData = JsonConvert.SerializeObject(addServiceDto);
                 StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 var responseMessage = await client.PostAsync("http://localhost:5208/api/Service", stringContent);
@@ -82,16 +80,11 @@ namespace HotelProject.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateServiceDto updateServiceDto, IFormFile? iconImage)
+        public async Task<IActionResult> Update(UpdateServiceDto updateServiceDto)
         {
             if(!ModelState.IsValid) return View(updateServiceDto);
 
             var client = _httpClientFactory.CreateClient();
-            if(iconImage != null && updateServiceDto.ServiceIcon != "defaultService.png")
-            {
-                ImageHelperExtension.DeleteImage(updateServiceDto.ServiceIcon!, "service");
-                updateServiceDto.ServiceIcon = await ImageHelperExtension.UploadWebpImage(iconImage, "service");
-            }
             var jsonData = JsonConvert.SerializeObject(updateServiceDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("http://localhost:5208/api/Service/", stringContent);

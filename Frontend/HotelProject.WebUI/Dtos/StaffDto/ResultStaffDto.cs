@@ -1,6 +1,6 @@
-﻿namespace HotelProject.WebUI.Areas.Admin.Models.Staff
+﻿namespace HotelProject.WebUI.Dtos.StaffDto
 {
-    public class StaffViewModel : EntityBaseViewModel
+    public class ResultStaffDto
     {
         public string? Name { get; set; }
         public string? Title { get; set; }

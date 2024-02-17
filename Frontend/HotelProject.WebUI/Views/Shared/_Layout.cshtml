@@ -35,7 +35,7 @@
         <!-- Booking End -->
         @RenderBody()
         <!-- Newsletter Start -->
-        @await Component.InvokeAsync("Newsletter")
+        @await Html.PartialAsync("_NewsletterPartialView.cshtml");
         <!-- Newsletter Start -->
         <!-- Footer Start -->
         @await Html.PartialAsync("_FooterPartialView")

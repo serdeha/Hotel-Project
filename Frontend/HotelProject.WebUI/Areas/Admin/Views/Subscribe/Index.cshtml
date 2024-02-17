@@ -1,0 +1,62 @@
+﻿@model List<ResultSubscribeDto>
+
+@{
+    ViewData["Title"] = "Aboneler";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    <div class="card">
+        <div class="card-body">
+            <h1>Aboneler</h1>
+            <hr />
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Eklenme Tarihi</th>
+                        <th>Durum</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var subscribe in Model)
+                    {
+                        <tr>
+                            <td>@subscribe.Email</td>
+                            <td>@subscribe.CreatedDate.ToShortDateString()</td>
+                            <td>
+                                <span class="label label-pill label-@(subscribe.IsActive ? "success":"danger")">@(subscribe.IsActive ? "Aktif":"Pasif")</span>
+                            </td>
+                            <td>
+                                <a asp-controller="Subscribe" asp-action="Delete" asp-area="Admin" asp-route-subscribeId="@subscribe.Id" class="btn mb-1 btn-rounded btn-outline-danger">Sil</a>
+                                <a asp-controller="Subscribe" asp-action="Update" asp-area="Admin" asp-route-subscribeId="@subscribe.Id" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Henüz abone eklenilmemiş!</h4>
+            <div class="card-content">
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading">Abone Bulunamadı!</h4>
+                    <p>
+                        Henüz abone eklenilmemiş.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

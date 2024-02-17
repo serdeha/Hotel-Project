@@ -35,9 +35,7 @@
                     @foreach (var service in Model)
                     {
                         <tr>
-                            <td>
-                                <img class="rounded-circle mt-4" height="40" width="40" src="~/img/service/@service.ServiceIcon" alt="@service.Title" />
-                            </td>
+                            <td>@service.ServiceIcon</td>
                             <td>@service.Title</td>
                             <td>@(service.Description?.Length > 0 ? $"{service.Description.Substring(0, 3)}..." : "Açıklama Yok")</td>
                             <td>@service.CreatedDate.ToShortDateString()</td>
